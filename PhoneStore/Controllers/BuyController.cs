@@ -1,37 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PhoneStore.DAL;
+using PhoneStore.DAL.Interfaces;
 using PhoneStore.Domain;
+using PhoneStore.Service.Interfaces;
 
 namespace PhoneStore.Controllers
 {
     public class BuyController : Controller
     {
-        PhoneDbContext _db;
+        private readonly IPurchaseService _purchaseService;
 
-        public BuyController(PhoneDbContext db)
+        public BuyController(IPurchaseService purchaseService)
         {
-            _db = db;
+            _purchaseService = purchaseService;
         }
 
-
-
         [HttpGet]
-        public IActionResult GetBuy(int? id)
+        public IActionResult GetBuy(int id)
         {
-            if (id == null) return RedirectToAction("Index");
-            ViewBag.PhoneId = id;
-            return View();
+            
+
+            var response = _purchaseService.GetPurchase(id);
+
+            return View(response);
         }
 
         [HttpPost]
         public string GetBuy(Purchase purchase)
         {
-
+           
             //Добавляем в бд заказ
-            _db.Purchase.Add(purchase);
+            _purchaseService.CreatePurchase(purchase);
 
-            // сохраняем в бд все изменения
-            _db.SaveChanges();
+            
+            
             return "Спасибо, " + purchase.FIO + ", за покупку!";
         }
     }

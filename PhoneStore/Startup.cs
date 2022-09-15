@@ -5,6 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PhoneStore.DAL;
+using PhoneStore.DAL.Interfaces;
+using PhoneStore.Service;
+using PhoneStore.Service.Implementetions;
+using PhoneStore.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +31,13 @@ namespace PhoneStore
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<PhoneDbContext>(options => options.UseSqlServer(connection));
 
-            services.AddControllersWithViews();
+            services.AddScoped<IPhoneRepository, PhoneRepository>();
+            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+            services.AddScoped<IPhoneService, PhoneService>();
+            services.AddScoped<IPurchaseService, PurchaseService>();
+            services.AddScoped<IBasketRepository, BasketRepository>();
+
+            
 
             services.AddControllersWithViews();
         }
