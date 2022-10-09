@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 using PhoneStore.DAL;
 using PhoneStore.Domain.ViewModels.Account;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PhoneStore.Controllers
 {
+    
     public class AccountController : Controller
     {
         private PhoneDbContext db;
@@ -23,13 +25,15 @@ namespace PhoneStore.Controllers
         {
             return View();
         }
+
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Name && u.Password == model.Password);
+                User user = await db.Users.FirstOrDefaultAsync(u => u.Name == model.Name && u.Password == model.Password);
                 if (user != null)
                 {
                     await Authenticate(model.Name); // аутентификация
