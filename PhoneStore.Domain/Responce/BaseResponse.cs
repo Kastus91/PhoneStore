@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhoneStore.Domain.Responce
 {
-    public class BaseResponse<T> : IBaseResponce<T>
+    public class BaseResponse<T> 
     {
         public string Description { get; set; }
 
@@ -14,8 +14,5 @@ namespace PhoneStore.Domain.Responce
         public T Data { get;}
     }
 
-    public interface IBaseResponce<T>
-    {
-        T Data { get;}
-    }
+    
 }

@@ -1,4 +1,5 @@
 ﻿using PhoneStore.Domain;
+using PhoneStore.Domain.Responce;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace PhoneStore.DAL.Interfaces
 {
-    public interface IPhoneRepository: IBaseRepository<Phone>
+    public interface IProfileRepository: IBaseRepository<Profile>
     {
-        Phone GetByName(string name);
+
     }
 }

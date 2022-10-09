@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PhoneStore.DAL.Interfaces
 {
-    public interface IBasketRepository<T>
+    public interface IBaseRepository<T>
     {
         bool Create(T entity);
 

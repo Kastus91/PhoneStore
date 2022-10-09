@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace PhoneStore.DAL.Interfaces
 {
-    public interface IPhoneRepository: IBaseRepository<Phone>
+    public interface IUserRepository: IBaseRepository<User>
     {
-        Phone GetByName(string name);
+
     }
 }

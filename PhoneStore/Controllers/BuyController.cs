@@ -19,7 +19,6 @@ namespace PhoneStore.Controllers
         public IActionResult GetBuy(int id)
         {
             
-
             var response = _purchaseService.GetPurchase(id);
 
             return View(response);

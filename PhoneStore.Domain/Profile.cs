@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneStore.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,15 @@ namespace PhoneStore.Domain
 {
     public class Profile
     {
-        public int Id { get; set; }
-        public int PhoneId { get; set; }
+        public long Id { get; set; }
+
+        public byte Age { get; set; }
+
+        public string Address { get; set; }
+
+        public long UserId { get; set; }
+
+        public User User { get; set; }
+
     }
 }

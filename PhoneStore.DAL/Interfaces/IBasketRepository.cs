@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PhoneStore.DAL.Interfaces
 {
-    public interface IBasketRepository: IBasketRepository<Basket>
+    public interface IBasketRepository: IBaseRepository<Basket>
     {
 
     }

@@ -2,6 +2,7 @@
 using PhoneStore.Domain;
 using PhoneStore.Domain.Enum;
 using PhoneStore.Domain.Responce;
+using PhoneStore.Domain.ViewModels;
 using PhoneStore.Service.Interfaces;
 using System;
 using System.Collections;
@@ -29,6 +30,88 @@ namespace PhoneStore.Service.Implementetions
 
             return phones;
                 
+        }
+
+        public Phone GetPhone(int id)
+        {
+            var phone = _phoneRepository.Get(id);
+
+            return phone;
+        }
+
+
+        public Phone GetPhoneByName(string name)
+        {
+            var phone = _phoneRepository.GetByName(name);
+
+            return phone;
+        }
+
+       
+        public bool CreatePhone(PhoneViewModel phoneViewModel)
+        {
+
+            try
+            {
+                var phone = new Phone()
+                {
+
+                    Name = phoneViewModel.Name,
+                    Produce = phoneViewModel.Produce,
+                    Price = phoneViewModel.Price,
+                };
+
+                _phoneRepository.Create(phone);
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
+        }
+        
+        
+        
+        public bool DeletePhone(int id)
+        {
+            try
+            {
+                var phone = _phoneRepository.Get(id);
+                
+                if (phone == null)
+                {
+                    bool result = true;
+
+                    return result;
+                }
+                
+
+                _phoneRepository.Delete(phone);
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+            return true;
+        }
+
+        public Phone Edit(int id, PhoneViewModel phoneViewModel)
+        {
+            var phone = _phoneRepository.Get(id);
+            
+            phone.Name = phoneViewModel.Name;
+            phone.Produce = phoneViewModel.Produce;
+            phone.Price = phoneViewModel.Price;
+
+            _phoneRepository.Update(phone);
+
+            return phone;
+
         }
 
 

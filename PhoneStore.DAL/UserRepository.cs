@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace PhoneStore.DAL
 {
-    public class BasketRepository : IBasketRepository
+    public class UserRepository : IUserRepository
     {
 
         private readonly PhoneDbContext _context;
 
-        public BasketRepository(PhoneDbContext context)
+        public UserRepository(PhoneDbContext context)
         {
             _context = context;
         }
 
-        public bool Create(Basket entity)
+        public bool Create(User entity)
         {
             _context.Add(entity);
 
@@ -27,7 +27,7 @@ namespace PhoneStore.DAL
             return true;
         }
 
-        public bool Delete(Basket entity)
+        public bool Delete(User entity)
         {
             _context.Remove(entity);
 
@@ -36,17 +36,17 @@ namespace PhoneStore.DAL
             return true;
         }
 
-        public Basket Get(int id)
+        public User Get(int id)
         {
-            return _context.Basket.FirstOrDefault(x => x.UserId == id);
+            return _context.Users.FirstOrDefault(x => x.Id == id);
         }
 
-        public IEnumerable<Basket> GetAll()
+        public IEnumerable<User> GetAll()
         {
-            return _context.Basket.ToList();
+            return _context.Users.ToList();
         }
 
-        public Basket Update(Basket entity)
+        public User Update(User entity)
         {
             _context.Update(entity);
 

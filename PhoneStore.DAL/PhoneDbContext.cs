@@ -14,15 +14,21 @@ namespace PhoneStore.DAL
         public PhoneDbContext(DbContextOptions<PhoneDbContext> options) : base(options)
         {
             Database.EnsureCreated();
+
+            //EnsureDeleted
         }
 
         public DbSet<Phone> Phones { get; set; }
 
         public DbSet<Purchase> Purchase { get; set; }
 
-        public DbSet<Profile> Users { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
 
         public DbSet<Basket> Basket { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Order> Orders { get; set; }
+
+        
     }
 }
 

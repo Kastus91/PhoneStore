@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PhoneStore.DAL.Interfaces
 {
-    public interface IPurchaseRepository: IBasketRepository<Purchase>
+    public interface IPurchaseRepository: IBaseRepository<Purchase>
     {
 
     }
